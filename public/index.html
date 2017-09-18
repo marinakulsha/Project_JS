@@ -17,7 +17,7 @@
 <ul class="list-unstyled" id="todo"></ul>
 <script>
     function getStrikeText(item) {
-        return item.done ? "<strike>" + item.name + "</strike>" : item.name;
+        return '<button class="close">&times;</button><span>' + (item.done ? "<strike>" + item.name + "</strike>" : item.name) + '</span>';
     }
    $.ajax({
      method: "GET",

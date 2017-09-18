@@ -17,6 +17,7 @@ const todoActions = {
         });
     },
     addTodo: function (todo) {
+        todo.done = JSON.parse(todo.done);
         return todos.push(todo)
     },
     changeTodoStatus: function (id) {
@@ -28,12 +29,12 @@ const todoActions = {
     },
     deleteTodo: function (id) {
         todos = todos.filter(function (todo) {
-            return todo.id !== id
+            return todo.id != id
         });
 
     },
     genId: function () {
-        return todos[todos.lenght].id + 1;
+        return todos.length > 0 ? parseInt(todos[todos.length - 1].id) + 1 : 1;
     }
 };
     module.exports = todoActions;

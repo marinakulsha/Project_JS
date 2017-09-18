@@ -3,15 +3,18 @@ $(document).ready(function () {
         var name = $('#input').val();
         var done = false;
         $.ajax({
-            method: "post",
+            type: "post",
             url: "/api/todos/",
-            body:{
-                name:name,
-                done:done
+            dataType:"JSON",
+            data:{
+                name: name,
+                done: done
             },
             success: function(item){
-                $('#todo').append('<li id="'+item.id+'">'+item.name+'</li>')
+                console.log(item)
+               $('#todo').append('<li id="'+item.id+'">'+getStrikeText(item)+'</li>')
             }
+
         });
         return false;
     })
@@ -20,4 +23,21 @@ $(document).ready(function () {
       $('form').submit();
    });
 
+    $('#todo').on('click', '.close', function () {
+        var id = $(this).parent().attr("id");
+        $.ajax({
+            type: "delete",
+            url: "/api/todos/" + id,
+            dataType: "JSON",
+            success: function (item) {
+                console.log(item)
+                $('#' + id).remove();
+            },
+            done: function (item) {
+               console.log(item);
+            }
+
+
+        });
+    })
 });

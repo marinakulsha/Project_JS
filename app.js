@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-//const bodyParcel= require("body-parser")
+const bodyParcel= require("body-parser")
 const todoBase = require("./todos")
 
 app.use(express.static(__dirname + '/public'));
-//app.use(bodyParcel.json({type: "application/json"}))
+app.use(bodyParcel.urlencoded({ extended: false }));
+app.use(bodyParcel.json({type: "application/json"}))
 
 app.get('/api/todos/', function (req, res) {
     console.log('get');
@@ -13,11 +14,11 @@ app.get('/api/todos/', function (req, res) {
 });
 
 app.post('/api/todos/', function (req, res) {
-    console.log('add');
     const todo = req.body;
     todo.id = todoBase.genId();
     todoBase.addTodo(todo);
     res.json(todo);
+
 });
 
 app.delete('/api/todos/:id', function (req, res) {

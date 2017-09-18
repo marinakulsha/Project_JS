@@ -9,11 +9,15 @@ input[type = submit]{
     padding-bottom: 25px;
 }
 #todo {
-    margin: 0 auto;
-    width: 500px;
+    margin: auto;
+    width: 300px;
 }
-
-a.close {
-    float: right;
+li{
+    height: 30px;
 }
-
+button.close {
+    float: none;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+}
